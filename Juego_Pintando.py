@@ -27,13 +27,27 @@ def circle(start, end): #En esta funcion se realiza la figura del circulo
     turtle.penup() #Se uso turtle, en este caso esta funcion se utiliza para que no se dibuje una linea negra al hacer la circunferencia
     turtle.goto(start.x,start.y) #Se fija el origen
     turtle.pendown() #Se reactiva el trazo para que se trace la circunferencia
-     #Nos ayudara para sacar el radio de la circunferencia
+    #Nos ayudara para sacar el radio de la circunferencia
     distance = ((end.x - start.x) ** 2 + (end.y - start.y) ** 2) ** 0.5
     turtle.circle(distance) #Se traza el circulo
 
 def rectangle(start, end):
     "Draw rectangle from start to end."
-    pass  # TODO
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
+
+    width = end.x - start.x  # Calcula la anchura del rectángulo
+    height = end.y - start.y  # Calcula la altura del rectángulo
+
+    for _ in range(2):
+        forward(width)  # Avanza la longitud del rectángulo
+        left(90)
+        forward(height)  # Avanza la altura del rectángulo
+        left(90)
+
+    end_fill()
 
 def triangle(start, end):
     "Draw triangle from start to end."
@@ -55,7 +69,7 @@ def store(key, value):
     "Store value in state at key."
     state[key] = value
 
-state = {'start': None, 'shape': circle}
+state = {'start': None, 'shape': rectangle}
 setup(420, 420, 370, 0)
 onscreenclick(tap)
 listen()
@@ -65,7 +79,7 @@ onkey(lambda: color('white'), 'W')
 onkey(lambda: color('green'), 'G')
 onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
-onkey(lambda: color('yellow'), 'Y') #Se agrega el nuevo color que es el amarillo ppara que se active con Y
+onkey(lambda: color('yellow'), 'Y') #Se agrega el nuevo color que es el amarillo para que se active con Y
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
 onkey(lambda: store('shape', circle), 'c')
