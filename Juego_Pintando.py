@@ -21,7 +21,7 @@ def square(start, end):
         left(90)
 
     end_fill()
-
+#git commit -m "En esta version del codigo se agrega el circulo y el nuevo color, en este caso amarillo" 
 def circle(start, end): #En esta funcion se realiza la figura del circulo
     "Draw circle from start to end."
     turtle.penup() #Se uso turtle, en este caso esta funcion se utiliza para que no se dibuje una linea negra al hacer la circunferencia
@@ -30,8 +30,8 @@ def circle(start, end): #En esta funcion se realiza la figura del circulo
     #Nos ayudara para sacar el radio de la circunferencia
     distance = ((end.x - start.x) ** 2 + (end.y - start.y) ** 2) ** 0.5
     turtle.circle(distance) #Se traza el circulo
-
-def rectangle(start, end):
+#git commit -m "En esta version del codigo se agrego la funcion del rectangulo" 
+def rectangle(start, end): #Se realizo la funcion para la figura del rectangulo, se tomo de base la del cuadrado
     "Draw rectangle from start to end."
     up()
     goto(start.x, start.y)
@@ -51,7 +51,20 @@ def rectangle(start, end):
 
 def triangle(start, end):
     "Draw triangle from start to end."
-    pass  # TODO
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
+
+    # Calcula la longitud de cada lado del triángulo
+    side_length = ((end.y + end.x) - (start.x + start.x)) / 2
+
+    # Dibuja el triángulo
+    for _ in range(3):
+        forward(side_length)
+        left(120)
+
+    end_fill()
 
 def tap(x, y):
     "Store starting point or draw shape."
@@ -69,7 +82,7 @@ def store(key, value):
     "Store value in state at key."
     state[key] = value
 
-state = {'start': None, 'shape': rectangle}
+state = {'start': None, 'shape': triangle}
 setup(420, 420, 370, 0)
 onscreenclick(tap)
 listen()
